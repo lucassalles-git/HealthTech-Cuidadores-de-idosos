@@ -5,12 +5,23 @@ const app = express();
 app.use(express.json());
 app.get("/", (req, res) => {
   res.send(`
-        <body>
-        <h1>Health Tech</h1>
-        <h2>Cuidadores de idosos</h2>
+        <html>
+        <head>
+          <style>
+          body { font-family: Arial, sans-serif; background: #f4f4f4; padding: 20px; }
+          h1 { color: #2c3e50; }
+          button { background: #27ae60; border: none; padding: 10px; border-radius: 5px; }
+          button a { color: white; text-decoration: none; font-weight: bold; }
+          </style>
+        </head>
 
-        <p>Endpoint que leva aos pacientes cadastrados: /pacientes</p>
-        </body>
+          <body>
+          <h1>Health Tech </h1>
+          <h2>Cuidadores de idosos</h2>
+          <p>Endpoint que leva aos pacientes cadastrados:</p>
+          <button><a href="/pacientes">Clique aqui</a></button>
+          </body>
+        </html>
         `);
 });
 
@@ -187,4 +198,14 @@ app.put("/pacientes/:id", async (req, res) => {
   res.send(
     `As informações do paciente de ID ${id} foram atualizadas com sucesso`,
   );
+});
+
+//Rota de remoção
+app.delete("/pacientes/:id", async (req, res) => {
+  const { id } = req.params;
+  const db = await criarBanco();
+
+  await db.run(`DELETE FROM pacientes WHERE id = ?`, [id]);
+
+  res.send(`O paciente com o id ${id} foi removido com sucesso`);
 });

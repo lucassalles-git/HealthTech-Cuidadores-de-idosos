@@ -168,7 +168,7 @@ const criarBanco = async () => {
       "15/01/2025",
       "10/04/2025",
       "Dr. Carlos Mendes",
-      "25/03/2026"
+      "01/01/2025"
       ),
 
       (
@@ -203,7 +203,7 @@ const criarBanco = async () => {
       "01/02/2025",
       "20/04/2025",
       "Dra. Fernanda Costa",
-      "25/03/2026"
+      "20/01/2025"
       ),
 
       (
@@ -238,7 +238,7 @@ const criarBanco = async () => {
       "01/09/2024",
       "01/05/2025",
       "Dr. Ricardo Alves",
-      "25/03/2026")`);
+      "25/08/2024")`);
   } else {
     console.log(`Banco pronto com ${checagem.total} pacientes`);
   }
@@ -246,9 +246,6 @@ const criarBanco = async () => {
   const todosOsPacientes = await db.all("SELECT * FROM pacientes");
   console.table(todosOsPacientes);
 
-  //Deletando paciente
-  await db.run(`DELETE FROM pacientes WHERE id = 3`);
-  console.log("Paciente do ID 3 removido");
 
   //Relatório final
   console.log("Relatório de pacientes(Final)");

@@ -39,7 +39,7 @@ app.get("/pacientes", async (req, res) => {
   res.json(listaPacientes);
 });
 
-//Rota específica por nome
+//Rota específica por id
 app.get("/pacientes/:id", async (req, res) => {
   const { id } = req.params;
   const db = await criarBanco();
